@@ -2,7 +2,7 @@ class ImportPatientsJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    raise StandardError.new "File does not exist" unless File.exists? args[0].to_s
+    import_file = ImportFile.new(args[0].to_s)
     report = File.new(Rails.root.join('report.txt'), "w+")
       report.write "This is a report"
     report.close
