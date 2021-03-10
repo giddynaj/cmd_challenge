@@ -9,4 +9,5 @@ class ImportPatientsJobTest < ActiveJob::TestCase
     ImportPatientsJob.perform_now Rails.root.join('test','fixtures','files','good.csv')
     assert File.exists? Rails.root.join('report.txt')
   end
+
 end

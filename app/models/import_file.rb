@@ -9,7 +9,9 @@ class ImportFile
 
   def generate_attributes_hash
     row = @file.gets
-    h = @columns.each_with_index.map { | v, i | [ v, row[i]] }
-    Hash[h]
+    unless row.nil?
+      h = @columns.each_with_index.map { | v, i | [ v, row[i]] }
+      Hash[h]
+    end
   end
 end
