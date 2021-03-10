@@ -4,10 +4,13 @@ class GetCleanCsvJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    CSV.open('./output.csv', 'wb') do |csv|
+    CSV.open('./output.csv', 'w+') do | csv |
       csv << Patient.attribute_names
-      Patient.all.each do |patient|
-        csv << user.attributes.values
+      binding.pry
+      Patient.find_each do | patient |
+        binding.pry
+        
+        csv << patient.attributes.values
       end
     end
   end
