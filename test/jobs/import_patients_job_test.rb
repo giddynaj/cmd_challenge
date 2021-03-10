@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ImportPatientsJobTest < ActiveJob::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should fail if no file provided" do 
+    assert_not ImportPatientsJob.perform_now
+  end
 end
