@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_10_171339) do
+ActiveRecord::Schema.define(version: 2021_03_10_180343) do
 
   create_table "patients", force: :cascade do |t|
     t.string "last_name"
     t.string "first_name"
-    t.datetime "dob"
+    t.string "dob"
     t.string "member_id"
-    t.datetime "effective_date"
-    t.datetime "expiry_date"
+    t.string "effective_date"
+    t.string "expiry_date"
     t.string "phone_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

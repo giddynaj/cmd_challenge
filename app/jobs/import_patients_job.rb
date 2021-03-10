@@ -3,7 +3,7 @@ class ImportPatientsJob < ApplicationJob
 
   def perform(*args)
     report = File.new(Rails.root.join('report.txt'), "w+")
-    report.write "This is a report"
+    report.write "Import Report\n"
     Patient.import(args[0].to_s, report)
     report.close
   rescue StandardError => e
