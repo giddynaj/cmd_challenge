@@ -13,13 +13,13 @@ class Patient < ApplicationRecord
   validates :effective_date, presence: true
 
   def clean_all_whitespace
-    self.last_name = self.last_name.strip
-    self.first_name = self.first_name.strip
-    self.dob = self.dob.strip
-    self.member_id = self.member_id.strip
-    self.effective_date = self.effective_date.strip
-    self.expiry_date = self.expiry_date.strip
-    self.phone_number = self.phone_number.strip
+    self.last_name = self.last_name.to_s.strip
+    self.first_name = self.first_name.to_s.strip
+    self.dob = self.dob.to_s.strip
+    self.member_id = self.member_id.to_s.strip
+    self.effective_date = self.effective_date.to_s.strip
+    self.expiry_date = self.expiry_date.to_s.strip
+    self.phone_number = self.phone_number.to_s.strip
   end
 
   def clean_whitespace(field)
@@ -53,10 +53,13 @@ class Patient < ApplicationRecord
     import_file = ImportFile.new(file_path, COLUMNS)
     report.write "Bad Imports\n"
     report.write "----------------------------------------\n"
+    #Hack
+    #Skip first row
+    row = import_file.generate_attributes_hash
     while !(row = import_file.generate_attributes_hash).nil?
       p = Patient.new(row)
       unless p.valid?
-       report.write row + "\n" 
+       report.write row.to_s + "\n" 
        report.write p.errors.to_s + "\n"
       else
        p.save

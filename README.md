@@ -1,24 +1,9 @@
-# README
+Run example
+(Generates the report.txt at Rails root)
+bundle exec rails runner "ImportPatientsJob.perform_now(Rails.root.join('input.csv'))"
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+(Generates the output.csv at Rails root)
+bundle exec rails runner "GetCleanCsvJob.perform_now"
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Run Test:
+rails test
